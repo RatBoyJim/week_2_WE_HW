@@ -2,11 +2,13 @@ import unittest
 
 from classes.room import *
 from classes.guest import *
+from classes.song import *
 
 class TestRoom(unittest.TestCase):
     def setUp(self):
         self.room = Room("Top o' the Pops", 2, 10)
         self.guest = Guest("Michael", 50.00, "Anderson", "Believe")
+        self.song = Song("Believe", "Cher", "Pop", 159)
 
     def test_room_has_name(self):
         self.assertEqual("Top o' the Pops", self.room.name)
@@ -45,10 +47,15 @@ class TestRoom(unittest.TestCase):
         self.room.remove_guest("Marie")
         self.assertEqual(1, len(self.room.guest_list))
 
-    def test_check_in_guest(self):
-        room = Room("Top o' the Pops", 2, 10)
-        guest = Guest("Marie", 100, "Anderson", "I'll Be There For You")
-        self.room.check_in_guest(room, guest)
-        self.assertEqual(1, len(self.room.room_list))
+    def test_making_sure_room_playlist_zero(self):
+        self.assertEqual(0, len(self.room.playlist))
 
-    
+    def test_add_song_to_room_playlist(self):
+        self.room.add_song_to_playlist(self.song)
+        self.assertEqual(1, len(self.room.playlist))
+
+
+
+
+
+

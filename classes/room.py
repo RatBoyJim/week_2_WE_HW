@@ -3,12 +3,12 @@ class Room:
         self.name = name
         self.capacity = capacity
         self.price = price
-        self.room_list = {}
+        self.room_list = []
         self.playlist = []
         self.guest_list = []
         
     def add_room(self, room):
-        self.room_list[room] = []
+        self.room_list.append(room)
 
     def add_guest(self, guest):
         self.guest_list.append(guest)
@@ -25,6 +25,7 @@ class Room:
             if guest.name == guest_to_remove:
                 self.guest_list.remove(guest)
 
-    def check_in_guest(self, room, guest):
-        self.room_list[room] = [guest]
+    def add_song_to_playlist(self, song):
+        self.playlist.append(song)
+
 
