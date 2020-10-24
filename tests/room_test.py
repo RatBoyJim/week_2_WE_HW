@@ -25,7 +25,7 @@ class TestRoom(unittest.TestCase):
     def test_add_guest_works(self):
         guest = Guest("Marie", 100, "Anderson", "I'll Be There For You")
         self.room.add_guest(guest)
-        self.assertEqual(1, len(self.room.booking_list))
+        self.assertEqual(1, len(self.room.guest_list))
 
     def test_find_guest__does_find_guest(self):
         self.room.add_guest(self.guest)
@@ -38,9 +38,17 @@ class TestRoom(unittest.TestCase):
     def test_remove_guest__does_find_guest(self):
         self.room.add_guest(self.guest)
         self.room.remove_guest("Michael")
-        self.assertEqual(0, len(self.room.booking_list))
+        self.assertEqual(0, len(self.room.guest_list))
 
     def test_remove_guest__doesnt_find_guest(self):
         self.room.add_guest(self.guest)
         self.room.remove_guest("Marie")
-        self.assertEqual(1, len(self.room.booking_list))
+        self.assertEqual(1, len(self.room.guest_list))
+
+    def test_check_in_guest(self):
+        room = Room("Top o' the Pops", 2, 10)
+        guest = Guest("Marie", 100, "Anderson", "I'll Be There For You")
+        self.room.check_in_guest(room, guest)
+        self.assertEqual(1, len(self.room.room_list))
+
+    
