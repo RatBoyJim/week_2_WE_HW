@@ -18,3 +18,8 @@ class Song:
                 return True
             else:
                 return False
+            
+    def remove_song(self, title_to_remove):
+        for song in self.playlist:
+            if song.title == title_to_remove:
+                self.playlist.remove(song)

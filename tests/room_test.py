@@ -14,4 +14,12 @@ class TestRoom(unittest.TestCase):
     
     def test_room_has_price(self):
         self.assertEqual(10, self.room.price)
+
+    def test_add_room_works(self):
+        room = Room("Excellent Eighties", 25, 50)
+        self.room.add_room(room)
+        self.assertEqual(1, len(self.room.room_list))
+
+    def test_check_in_guests():
+        pass
     
