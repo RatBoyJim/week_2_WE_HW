@@ -3,3 +3,4 @@ class Room:
         self.name = name
         self.capacity = capacity
         self.price = price
+        
