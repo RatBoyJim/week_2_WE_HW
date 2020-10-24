@@ -51,11 +51,23 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(0, len(self.room.playlist))
 
     def test_add_song_to_room_playlist(self):
-        self.room.add_song_to_playlist(self.song)
+        self.room.add_song_to_room_playlist(self.song)
         self.assertEqual(1, len(self.room.playlist))
 
+    def test_add_guest__no_room(self):
+        self.room.add_room(self.room)
+        self.room.add_guest(self.guest)
+        self.room.add_guest(self.guest)
+        self.room.add_guest(self.guest)
+        self.room.add_guest(self.guest)
+        self.assertEqual(2, len(self.room.guest_list))
 
+    def test_guest_paid_entry(self):
+        self.room.add_room(self.room)
+        self.room.add_guest(self.guest)
+        self.assertEqual(40.0, self.guest.wallet)
 
-
-
-
+    # def test_fave_song_response(self):
+    #     self.room.add_guest(self.guest)
+    #     self.room.add_song_to_room_playlist(self.song)
+    #     self.assertEqual("Yaldy!", self.room.fave_song_response(self.guest))

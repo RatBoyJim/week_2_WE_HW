@@ -11,7 +11,9 @@ class Room:
         self.room_list.append(room)
 
     def add_guest(self, guest):
-        self.guest_list.append(guest)
+        if len(self.guest_list) < self.capacity and guest.wallet >= self.price:
+            guest.wallet -= self.price
+            self.guest_list.append(guest)
 
     def find_guest(self, guest_to_find):
         for guest in self.guest_list:
@@ -25,7 +27,12 @@ class Room:
             if guest.name == guest_to_remove:
                 self.guest_list.remove(guest)
 
-    def add_song_to_playlist(self, song):
+    def add_song_to_room_playlist(self, song):
         self.playlist.append(song)
+
+    # def fave_song_response(self, guest):
+    #     for song in self.playlist:
+    #         if song.name == guest.fave:
+    #             return "Yaldy!"
 
 
