@@ -6,11 +6,11 @@ from classes.food import *
 class TestBar(unittest.TestCase):
     
     def setUp(self):
-        self.bar = Bar("The Tubthumping Bar", 100.00)
+        self.bar = Bar("The Tubthumper", 100.00)
     
 
     def test_bar_has_name(self):
-        self.assertEqual("The Tubthumping Bar", self.bar.name)
+        self.assertEqual("The Tubthumper", self.bar.name)
 
     def test_till_has_money(self):
         self.assertEqual(100.00, self.bar.till)
@@ -33,7 +33,7 @@ class TestBar(unittest.TestCase):
         self.assertEqual(3, self.bar.drinks[drink])
 
     def test_stock_value(self):
-        drink = Drink("Vodka Drink", 6.50, 3)
+        drink = Drink("Whisky Drink", 6.50, 3)
         self.bar.add_drink_to_list(drink)
         self.bar.add_drink_to_list(drink)
         self.assertEqual(13.00, self.bar.stock_value())

@@ -10,10 +10,10 @@ class Room:
     def add_room(self, room):
         self.room_list.append(room)
 
-    def add_guest(self, guest):
+    def add_guest(self, guest, bar):
         if len(self.guest_list) < self.capacity and guest.wallet >= self.price:
             guest.wallet -= self.price
-            # bar.till += self.price
+            bar.till += self.price
             self.guest_list.append(guest)
 
     def find_guest(self, guest_to_find):
