@@ -30,9 +30,9 @@ class Room:
     def add_song_to_room_playlist(self, song):
         self.playlist.append(song)
 
-    # def fave_song_response(self, guest):
-    #     for song in self.playlist:
-    #         if song.name == guest.fave:
-    #             return "Yaldy!"
+    def fave_song_response(self, guest):
+        for song in self.playlist:
+            if song.title == guest.fave:
+                return "Yaldy!"
 
 
