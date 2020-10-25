@@ -3,11 +3,12 @@ import unittest
 from classes.room import *
 from classes.guest import *
 from classes.song import *
+from classes.bar import *
 
 class TestRoom(unittest.TestCase):
     def setUp(self):
         self.room = Room("Top o' the Pops", 2, 10)
-        self.guest = Guest("Michael", 50.00, "Anderson", "Believe")
+        self.guest = Guest("Michael", 50.00, "Anderson", "Believe", 38)
         self.song = Song("Believe", "Cher", "Pop", 159)
 
     def test_room_has_name(self):
@@ -25,7 +26,7 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(1, len(self.room.room_list))
 
     def test_add_guest_works(self):
-        guest = Guest("Marie", 100, "Anderson", "I'll Be There For You")
+        guest = Guest("Marie", 100, "Anderson", "I'll Be There For You", 38)
         self.room.add_guest(guest)
         self.assertEqual(1, len(self.room.guest_list))
 
