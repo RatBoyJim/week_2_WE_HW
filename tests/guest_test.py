@@ -9,6 +9,7 @@ from classes.food import *
 class TestGuest(unittest.TestCase):
     def setUp(self):
         self.guest = Guest("Michael", 50.00, "Anderson", "Believe", 38)
+        self.room = Room("Top o' the Pops", 2, 10)
 
     def test_guest_has_name(self):
         self.assertEqual("Michael", self.guest.name)
@@ -29,7 +30,7 @@ class TestGuest(unittest.TestCase):
         bar = Bar("The Tubthumper", 100.00)
         drink = Drink("Vodka Drink", 6.50, 3)
         bar.add_drink_to_list(drink)
-        self.guest.buy_drink(drink, bar)
+        self.guest.buy_drink(drink, bar, self.guest, self.room)
         self.assertEqual(43.50, self.guest.wallet)
 
     def test_guest_is_refused_service_underage(self):
@@ -37,7 +38,7 @@ class TestGuest(unittest.TestCase):
         drink = Drink("Vodka Drink", 6.50, 3)
         self.guest = Guest("Joseph Anderson", 20.00, "Anderson", "I Like To Move It", 5)
         bar.add_drink_to_list(drink)
-        self.guest.buy_drink(drink, bar)
+        self.guest.buy_drink(drink, bar, self.guest, self.room)
         self.assertEqual(100, bar.till)
         
 
@@ -45,26 +46,26 @@ class TestGuest(unittest.TestCase):
         bar = Bar("The Tubthumper", 100.00)
         drink = Drink("Vodka Drink", 6.50, 3)
         bar.add_drink_to_list(drink)
-        self.guest.buy_drink(drink, bar)
+        self.guest.buy_drink(drink, bar, self.guest, self.room)
         self.assertEqual(106.50, bar.till)
 
     def test_guest_drunkenness_goes_up(self):
         bar = Bar("The Tubthumper", 100.00)
         drink = Drink("Vodka Drink", 6.50, 3)
         bar.add_drink_to_list(drink)
-        self.guest.buy_drink(drink, bar)
+        self.guest.buy_drink(drink, bar, self.guest, self.room)
         self.assertEqual(3, self.guest.drunkenness)
 
     def test_guest_refused_service_too_drunk(self):
             bar = Bar("The Tubthumper", 100.00)
             drink = Drink("Vodka Drink", 6.50, 3)
             bar.add_drink_to_list(drink)
-            self.guest.buy_drink(drink, bar)
-            self.guest.buy_drink(drink, bar)
-            self.guest.buy_drink(drink, bar)
-            self.guest.buy_drink(drink, bar)
-            self.guest.buy_drink(drink, bar)
-            self.guest.buy_drink(drink, bar)
+            self.guest.buy_drink(drink, bar, self.guest, self.room)
+            self.guest.buy_drink(drink, bar, self.guest, self.room)
+            self.guest.buy_drink(drink, bar, self.guest, self.room)
+            self.guest.buy_drink(drink, bar, self.guest, self.room)
+            self.guest.buy_drink(drink, bar, self.guest, self.room)
+            self.guest.buy_drink(drink, bar, self.guest, self.room)
             self.assertEqual(17.50, self.guest.wallet)
 
     def test_guest_drunkenness_goes_down_with_food(self):
@@ -73,9 +74,9 @@ class TestGuest(unittest.TestCase):
         food = Food("Pizza", 7.20, 3)
         bar.add_drink_to_list(drink)
         bar.add_food_to_list(food)
-        self.guest.buy_drink(drink, bar)
-        self.guest.buy_drink(drink, bar)
-        self.guest.buy_food(food, bar)
+        self.guest.buy_drink(drink, bar, self.guest, self.room)
+        self.guest.buy_drink(drink, bar, self.guest, self.room)
+        self.guest.buy_food(food, bar, self.guest, self.room)
         self.assertEqual(3, self.guest.drunkenness)
 
     def test_guest_drunkenness_doesnt_go_below_zero(self):
@@ -84,8 +85,8 @@ class TestGuest(unittest.TestCase):
         food = Food("American Pie", 8.20, 8)
         bar.add_drink_to_list(drink)
         bar.add_food_to_list(food)
-        self.guest.buy_drink(drink, bar)
-        self.guest.buy_food(food, bar)
+        self.guest.buy_drink(drink, bar, self.guest, self.room)
+        self.guest.buy_food(food, bar, self.guest, self.room)
         self.assertEqual(0, self.guest.drunkenness)
 
     

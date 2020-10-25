@@ -4,13 +4,17 @@ from classes.room import *
 from classes.guest import *
 from classes.song import *
 from classes.bar import *
+from classes.drink import *
+from classes.food import *
 
 class TestRoom(unittest.TestCase):
     def setUp(self):
         self.room = Room("Top o' the Pops", 2, 10)
-        self.guest = Guest("Michael", 50.00, "Anderson", "Believe", 38)
-        self.song = Song("Believe", "Cher", "Pop", 159)
+        self.guest = Guest("Michael", 50.00, "Anderson", "Sometimes", 38)
+        self.song = Song("Sometimes", "James", "Pop", 316)
         self.bar = Bar("The Tubthumper", 100.00)
+        self.drink = Drink("Whisky Drink", 5.50, 1)
+        self.food = Food("American Pie", 7.20, 3)
 
     def test_room_has_name(self):
         self.assertEqual("Top o' the Pops", self.room.name)
@@ -77,3 +81,10 @@ class TestRoom(unittest.TestCase):
     def test_cust_entry_added_to_bar_till(self):
         self.room.add_guest(self.guest, self.bar)
         self.assertEqual(110.00, self.bar.till)
+
+    # def test_cust_spend_works(self):
+    #     self.room.add_guest(self.guest, self.bar)
+    #     self.guest.buy_drink(self.drink, self.bar, self.guest, self.room)
+    #     self.guest.buy_food(self.food, self.bar, self.guest, self.room)
+    #     self.assertEqual(22.70, self.room.guest_spend[self.guest])
+        

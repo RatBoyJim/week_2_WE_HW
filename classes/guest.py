@@ -7,18 +7,20 @@ class Guest:
         self.age = age
         self.drunkenness = 0
 
-    def buy_drink(self, drink, bar):
+    def buy_drink(self, drink, bar, guest, room):
         for item in bar.drinks:
             if item.name == drink.name and self.wallet >= item.price and self.age >= 18 and self.drunkenness < 15:
                 self.wallet -= item.price
                 bar.till += item.price
+                room.guest_spend[guest] = room.guest_spend.get(guest, 0) + item.price
                 self.drunkenness += item.alcohol_level
 
-    def buy_food(self, food, bar):
+    def buy_food(self, food, bar, guest, room):
         for item in bar.food_list:
             if item.name == food.name and self.wallet >= item.price:
                 self.wallet -= item.price
                 bar.till += item.price
+                room.guest_spend[guest] = room.guest_spend.get(guest, 0) + item.price
                 if (self.drunkenness - item.rejuvenation_level) > 0:
                     self.drunkenness -= item.rejuvenation_level
                 else:

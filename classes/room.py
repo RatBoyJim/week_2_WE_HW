@@ -6,6 +6,7 @@ class Room:
         self.room_list = []
         self.playlist = []
         self.guest_list = []
+        self.guest_spend = {}
         
     def add_room(self, room):
         self.room_list.append(room)
@@ -14,6 +15,7 @@ class Room:
         if len(self.guest_list) < self.capacity and guest.wallet >= self.price:
             guest.wallet -= self.price
             bar.till += self.price
+            self.guest_spend[guest] = self.guest_spend.get(guest, 0) + self.price
             self.guest_list.append(guest)
 
     def find_guest(self, guest_to_find):
